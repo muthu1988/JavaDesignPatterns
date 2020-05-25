@@ -71,14 +71,18 @@ class ProductFilter implements Filter<Product> {
 }
 
 
-class Ocl {
+public class OpenClose {
 	public static void main(String[] args) {
+		
+		System.out.println("Open Close Principle");
 		Product apple = new Product("Apple", COLOR.GREEN, SIZE.SMALL);
 		Product tree = new Product("Tree", COLOR.GREEN, SIZE.LARGE);
 		Product car = new Product("Car", COLOR.RED, SIZE.LARGE);
 		List<Product> products = Arrays.asList(apple, tree, car);
+		
+		System.out.println("Filter class is open for extension and cloesd for modification");
 		ProductFilter filter = new ProductFilter();
-//		filter.filterItem(products, new ColorCondition(COLOR.GREEN)).forEach(System.out::println);
+		filter.filterItem(products, new ColorCondition(COLOR.GREEN)).forEach(System.out::println);
 		ProductAndCondition andCondition = new ProductAndCondition(new ColorCondition(COLOR.GREEN), new SizeCondition(SIZE.LARGE));
 		filter.filterItem(products, andCondition).forEach(System.out::println);
 	}
